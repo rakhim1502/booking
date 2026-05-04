@@ -1,26 +1,26 @@
 {
-  "name": "server",
+  "name": "eventora",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
-  "license": "ISC",
-  "author": "rakhim",
-  "type": "commonjs",
-  "main": "index.js",
+  "description": "Root scripts for Eventora client and server",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.4.1",
-    "nodemailer": "^8.0.5"
+    "install:all": "npm install --prefix server --legacy-peer-deps && npm install --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "dev": "concurrently -n server,client -c blue,green \"npm run dev:server\" \"npm run dev:client\"",
+    "start:server": "npm run start --prefix server",
+    "start:client": "npm run preview --prefix client",
+    "start": "concurrently -n server,client -c blue,green \"npm run start:server\" \"npm run start:client\"",
+    "build": "npm run build --prefix client",
+    "lint": "npm run lint --prefix client",
+    "setup": "npm run install:all",
+    "dev:all": "npm run install:all && npm run dev",
+    "start:all": "npm run install:all && npm run start"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "concurrently": "^9.0.1"
+  },
+  "dependencies": {
+    "mongodb": "^7.2.0"
   }
 }
