@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import api from '../utils/axios';
-// import { AuthContext } from './AuthContextCreate';
+
+// AuthContext ni yarating
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
@@ -57,3 +59,6 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
+
+// AuthContext ni export qiling
+export { AuthContext };
